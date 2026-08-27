@@ -1,0 +1,20 @@
+{
+  "claim": "The CEO of GlobalTech announced his immediate resignation and admitted to massive financial fraud in a leaked internal video broadcast.",
+  "sources": [
+    {
+      "url": "https://www.reuters.com/fact-check/globaltech-ceo-resignation-video-is-deepfake-manipulated-media-2026",
+      "title": "Fact Check: Leaked video of GlobalTech CEO resigning and admitting fraud is an AI deepfake",
+      "clean_text": "Reuters Fact Check investigated the viral video circulating on social media claiming that GlobalTech's chief executive admitted to $4 billion in financial fraud and resigned immediately. A spokesperson for GlobalTech confirmed the executive remains in office and never made the statements. Forensic video analysis conducted by the Digital Media Lab revealed distinct facial warping, irregular eye reflections, and synthetic speech synthesis matching known generative AI cloning tools. No regulatory filings or official corporate statements indicate any resignation or fraud admission."
+    },
+    {
+      "url": "https://tech-leakz-daily.blogspot.com/2026/08/explosive-globaltech-ceo-steps-down-admits-fraud.html",
+      "title": "EXPLOSIVE: GlobalTech CEO Steps Down After Fraud Video Leaked Online",
+      "clean_text": "In a shocking turn of events today, a leaked video from an internal GlobalTech town hall shows the CEO openly admitting to massive multi-billion dollar fraud and tendering his immediate resignation. The video has sent shockwaves through the tech sector as insiders confirm the executive has stepped down effective immediately."
+    },
+    {
+      "url": "https://techcrunch.com/2026/08/25/deepfake-executive-impersonation-scams-rise-across-tech-enterprises/",
+      "title": "Generative AI Impersonation Scams Target Tech Enterprise Leadership",
+      "clean_text": "Cybersecurity firms are reporting a steep increase in sophisticated video and audio deepfakes targeting enterprise leaders. Recent incidents across Fortune 500 tech companies demonstrate how synthetic video broadcasts are increasingly weaponized to cause market volatility, deceive internal staff, and manipulate social sentiment before official corporate communications can respond."
+    }
+  ]
+}
