@@ -98,7 +98,7 @@ def _call_gemini_text(prompt: str) -> Dict[str, Any]:
     from google.genai import types
 
     client = genai.Client(api_key=api_key, http_options=types.HttpOptions(timeout=7.0))
-    gemini_models = ["gemini-2.5-flash", "gemini-3.5-flash", "gemini-flash-latest"]
+    gemini_models = ["gemini-3.6-flash", "gemini-2.5-flash", "gemini-3.7-flash", "gemini-flash-latest"]
     last_error = None
 
     for model in gemini_models:
@@ -131,7 +131,7 @@ def _call_groq_text(prompt: str) -> Dict[str, Any]:
     from groq import Groq
 
     client = Groq(api_key=api_key, timeout=7.0)
-    groq_models = ["llama-3.3-70b-versatile", "llama3-70b-8192"]
+    groq_models = ["llama-3.3-70b-versatile", "openai/gpt-oss-120b", "qwen/qwen3.8-27b", "llama3-70b-8192"]
     last_error = None
 
     for model in groq_models:
@@ -312,7 +312,7 @@ def _call_gemini_vision(image_bytes: bytes, mime_type: str) -> Optional[Dict[str
     from google.genai import types
 
     client = genai.Client(api_key=api_key, http_options=types.HttpOptions(timeout=10.0))
-    gemini_models = ["gemini-2.5-flash", "gemini-3.5-flash", "gemini-flash-latest"]
+    gemini_models = ["gemini-3.6-flash", "gemini-2.5-flash", "gemini-3.7-flash", "gemini-flash-latest"]
     last_error = None
 
     image_part = types.Part.from_bytes(data=image_bytes, mime_type=mime_type)
@@ -401,7 +401,8 @@ def handle_image_path(image_url: Optional[str], text_claim: Optional[str], langu
     try:
         if image_url.startswith("http://") or image_url.startswith("https://"):
             logger.info(f"Downloading image from URL: {image_url}...")
-            resp = httpx.get(image_url, timeout=12.0)
+            headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"}
+            resp = httpx.get(image_url, headers=headers, timeout=12.0)
             resp.raise_for_status()
             image_bytes = resp.content
             # Deduce mime type

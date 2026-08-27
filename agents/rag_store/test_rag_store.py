@@ -24,7 +24,10 @@ _HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, _HERE)
 
 import pytest
-import rag_store  # noqa: E402
+try:
+    from agents.rag_store import rag_store
+except ImportError:
+    import rag_store  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Fixtures

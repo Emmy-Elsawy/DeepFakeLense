@@ -1,139 +1,64 @@
 """
 DeepFakeLens 5-Agent Pipeline Orchestrator.
-
-Orchestrates sequential execution:
-  1. Intake / Claim Extractor Agent (Person A)
-     - Normalizes input; branches text vs image.
-     - For images: runs image authenticity check (HF inference / Vision).
-  2. RAG Knowledge Cache Check (Person B)
-     - Checks similarity against past verified claims (rag_store.check_cache).
-     - Cache hit -> returns cached verdict immediately (fast & free).
-  3. Search Agent (Person B) [Only if cache miss]
-     - Queries Tavily / DuckDuckGo / Google Fact Check API for candidate URLs.
-  4. Scraper Agent (Person C) [Only if cache miss]
-     - Scrapes candidate pages (Playwright + trafilatura) and truncates text.
-  5. Cross-Reference / Analysis Agent (Person D) [Only if cache miss]
-     - Analyzes stances and weighs credibility tiers.
-  6. Verdict & Explainer Agent (Person E - verdict_agent.py)
-     - Synthesizes final verdict, writes to RAG cache, returns final JSON.
-
-Also provides lightweight single-shot follow-up answering on top of cached context.
+Wires together the real implementations of all 5 agents:
+  1. Intake / Claim Extractor Agent (Person A — intake_agent.py)
+  2. RAG Knowledge Cache Check (Person B — agents/rag_store/rag_store.py)
+  3. Search Agent (Person B — agents/search_agent/search_agent.py)
+  4. Scraper Agent (Person C — scraper_agent/scraper_agent.py)
+  5. Cross-Reference / Analysis Agent (Person D — agent-analysis/analysis_agent.py)
+  6. Verdict & Explainer Agent (Person E — verdict_agent.py)
 """
 
 from __future__ import annotations
 import json
 import logging
 import os
-import re
+import sys
 from typing import Any, Dict, List, Literal, Optional
 from dotenv import load_dotenv
 
-import rag_store
-import verdict_agent
+# Ensure subdirectories are accessible on sys.path
+_HERE = os.path.dirname(os.path.abspath(__file__))
+_ANALYSIS_DIR = os.path.join(_HERE, "agent-analysis")
+_AGENTS_DIR = os.path.join(_HERE, "agents")
+_SEARCH_DIR = os.path.join(_AGENTS_DIR, "search_agent")
+_RAG_DIR = os.path.join(_AGENTS_DIR, "rag_store")
+_SCRAPER_DIR = os.path.join(_HERE, "scraper_agent")
+
+for p in [_HERE, _ANALYSIS_DIR, _AGENTS_DIR, _SEARCH_DIR, _RAG_DIR, _SCRAPER_DIR]:
+    if p not in sys.path:
+        sys.path.insert(0, p)
 
 load_dotenv()
 logger = logging.getLogger("DeepFakeLens.Pipeline")
 
+# Import real agent implementations
+import intake_agent
+import rag_store
+try:
+    from agents.search_agent import run_search
+except ImportError:
+    from search_agent import run_search
 
-# ============================================================================
-# Upstream Agent Stubs (Pluggable: swap with real modules when merged)
-# ============================================================================
+try:
+    from scraper_agent import run_scraper
+except ImportError:
+    from scraper_agent.scraper_agent import run_scraper
 
-def run_intake_agent(
-    input_type: str,
-    text_claim: Optional[str] = None,
-    image_url: Optional[str] = None,
-    language: str = "en"
-) -> Dict[str, Any]:
-    """
-    Agent 1 (Person A) Stub: Extracts core claim and performs initial routing.
-    """
-    logger.info(f"[Agent 1: Intake] Processing input_type='{input_type}'...")
-    if input_type == "image":
-        claim = text_claim.strip() if text_claim else "Authenticity verification of uploaded image"
-        return {
-            "input_type": "image",
-            "extracted_claim": claim,
-            "image_url": image_url,
-            "language": language
-        }
-    else:
-        claim = (text_claim or "").strip()
-        return {
-            "input_type": "text",
-            "extracted_claim": claim,
-            "image_url": None,
-            "language": language
-        }
+try:
+    from analysis_agent import run_analysis
+except ImportError:
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("analysis_agent", os.path.join(_ANALYSIS_DIR, "analysis_agent.py"))
+    analysis_mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(analysis_mod)
+    run_analysis = analysis_mod.run_analysis
 
-
-def run_image_authenticity_check(image_url: Optional[str]) -> Dict[str, Any]:
-    """
-    Agent 1 Tool (Person A) Stub: Hugging Face deepfake detector / Gemini Vision signal.
-    """
-    logger.info(f"[Agent 1: Image Authenticity] Checking image: {image_url}...")
-    # Default stub representation of image authenticity
-    return {
-        "is_ai_generated": False,
-        "confidence": 0.88,
-        "note": "Image visual artifacts, lighting consistency, and metadata inspected. Framing provided as forensic signal."
-    }
-
-
-def run_search_agent(claim: str, language: str = "en") -> Dict[str, Any]:
-    """
-    Agent 2 (Person B) Stub: Tavily / DuckDuckGo / Fact Check API search.
-    Returns 3-4 candidate URLs biased toward high-credibility domains.
-    """
-    logger.info(f"[Agent 2: Search] Querying trusted sources for claim: '{claim[:50]}...'")
-    return {
-        "candidate_urls": [
-            "https://www.reuters.com/fact-check/sample-report",
-            "https://factcheck.afp.com/sample-investigation",
-            "https://apnews.com/hub/ap-fact-check"
-        ]
-    }
-
-
-def run_scraper_agent(candidate_urls: List[str]) -> Dict[str, Any]:
-    """
-    Agent 3 (Person C) Stub: Playwright + Trafilatura async scraper with token cap (~500-800 tokens).
-    """
-    logger.info(f"[Agent 3: Scraper] Scraping {len(candidate_urls)} candidate URLs...")
-    sources = []
-    for url in candidate_urls:
-        domain = url.split("/")[2] if "//" in url else url
-        sources.append({
-            "url": url,
-            "title": f"Fact Check Report from {domain.capitalize()}",
-            "clean_text": f"Independent fact-checking investigation by {domain} found verifiable records clarifying the subject matter."
-        })
-    return {"sources": sources}
-
-
-def run_analysis_agent(claim: str, sources: List[Dict[str, Any]]) -> Dict[str, Any]:
-    """
-    Agent 4 (Person D) Stub: Cross-references scraped evidence against claim.
-    Assigns stances and credibility tiers.
-    """
-    logger.info(f"[Agent 4: Analysis] Cross-referencing {len(sources)} sources against claim...")
-    per_source = []
-    for s in sources:
-        url = s.get("url", "")
-        # Heuristic stance assignment for stub demo
-        stance = "contradicts" if any(k in claim.lower() for k in ["fake", "great wall", "squid", "hoax", "secret"]) else "supports"
-        tier = "high" if any(d in url for d in ["reuters", "afp", "apnews", "nasa", "unesco", "bbc"]) else "medium"
-        per_source.append({
-            "url": url,
-            "title": s.get("title", url),
-            "stance": stance,
-            "credibility_tier": tier
-        })
-    return {"per_source": per_source}
+import verdict_agent
 
 
 # ============================================================================
-# Full Orchestrator
+# Full 5-Agent Sequential Pipeline
 # ============================================================================
 
 def run_pipeline(
@@ -143,50 +68,112 @@ def run_pipeline(
     language: str = "en"
 ) -> Dict[str, Any]:
     """
-    Executes the full 5-agent DeepFakeLens pipeline.
+    Executes the full 5-agent DeepFakeLens pipeline sequentially:
+      Intake → RAG Check (skip to cached verdict if hit) → Search → Scraper → Analysis → Verdict
     """
-    logger.info(f"--- Starting DeepFakeLens Pipeline ({input_type}) ---")
+    logger.info(f"=== [DeepFakeLens] Starting Pipeline Execution (input_type='{input_type}', lang='{language}') ===")
 
-    # Step 1: Intake Agent
-    intake = run_intake_agent(input_type, text_claim, image_url, language)
-    claim = intake.get("extracted_claim", "")
+    # ------------------------------------------------------------------------
+    # STEP 1: Intake / Claim Extractor Agent (Person A)
+    # ------------------------------------------------------------------------
+    logger.info("[Step 1: Intake Agent] Running claim extraction and routing...")
+    intake_result = intake_agent.run_intake(
+        input_type=input_type,
+        text_claim=text_claim,
+        image_url=image_url,
+        language=language
+    )
 
-    image_authenticity: Optional[Dict[str, Any]] = None
+    # If input is image, intake_agent executes deepfake detection & vision and derives verdict
     if input_type == "image":
-        image_authenticity = run_image_authenticity_check(image_url)
+        logger.info("[Step 1: Intake Agent] Image path completed. Returning image verdict directly.")
+        # Ensure confidence is normalized float 0.0 - 1.0
+        conf = float(intake_result.get("confidence", 0.90))
+        if conf > 1.0:
+            conf = conf / 100.0
+        intake_result["confidence"] = round(conf, 2)
+        return intake_result
 
-    # Step 2: RAG / Knowledge Cache Check (Text path only)
-    if input_type == "text" and claim:
-        logger.info(f"[RAG Check] Querying vector cache for claim: '{claim[:50]}...'")
-        cached = rag_store.check_cache(claim, similarity_threshold=0.85)
-        if cached:
-            logger.info("⚡ [RAG Hit] Found identical or highly similar claim in cache! Returning instant verdict.")
-            return cached
-        logger.info("[RAG Miss] No cache match found. Proceeding to web search & analysis...")
+    # Text claim extraction
+    claim = intake_result.get("extracted_claim", (text_claim or "").strip())
+    detected_lang = intake_result.get("language", language)
+    logger.info(f"[Step 1: Intake Agent] Extracted claim: '{claim}' (language='{detected_lang}')")
 
-    # Step 3: Search Agent
-    search_res = run_search_agent(claim, language)
-    candidate_urls = search_res.get("candidate_urls", [])
+    # ------------------------------------------------------------------------
+    # STEP 2: RAG Knowledge Cache Check (Person B)
+    # ------------------------------------------------------------------------
+    logger.info(f"[Step 2: RAG Cache] Querying ChromaDB cache for claim: '{claim[:60]}...'")
+    cached_verdict = rag_store.check_cache(claim, similarity_threshold=0.85)
+    if cached_verdict:
+        logger.info(f"⚡ [Step 2: RAG Cache HIT] Found pre-verified verdict in RAG cache! Verdict: {cached_verdict.get('verdict')}")
+        
+        # Normalize cached sources to match List[SourceItem] contract
+        raw_sources = cached_verdict.get("sources", [])
+        normalized_sources = []
+        for s in raw_sources:
+            if isinstance(s, str):
+                domain = s.split("/")[2] if "//" in s else s
+                v = cached_verdict.get("verdict", "unverified")
+                stance = "contradicts" if v == "false" else ("supports" if v == "true" else "context")
+                normalized_sources.append({
+                    "title": f"Verified Source ({domain})",
+                    "url": s,
+                    "stance": stance
+                })
+            elif isinstance(s, dict):
+                normalized_sources.append({
+                    "title": s.get("title", s.get("url", "")),
+                    "url": s.get("url", ""),
+                    "stance": s.get("stance", "context")
+                })
+        cached_verdict["sources"] = normalized_sources
+        
+        if "confidence" not in cached_verdict:
+            cached_verdict["confidence"] = 0.95
+        if "image_authenticity" not in cached_verdict:
+            cached_verdict["image_authenticity"] = None
+            
+        return cached_verdict
 
-    # Step 4: Scraper Agent
-    scraper_res = run_scraper_agent(candidate_urls)
-    scraped_sources = scraper_res.get("sources", [])
+    logger.info("[Step 2: RAG Cache MISS] No semantic match in cache. Proceeding to web search...")
 
-    # Step 5: Cross-Reference / Analysis Agent
-    analysis_res = run_analysis_agent(claim, scraped_sources)
-    per_source = analysis_res.get("per_source", [])
+    # ------------------------------------------------------------------------
+    # STEP 3: Search Agent (Person B)
+    # ------------------------------------------------------------------------
+    logger.info(f"[Step 3: Search Agent] Searching web sources for claim: '{claim[:60]}...'")
+    search_output = run_search(claim=claim, language=detected_lang)
+    candidate_urls = search_output.get("candidate_urls", [])
+    logger.info(f"[Step 3: Search Agent] Retrieved {len(candidate_urls)} candidate URLs: {candidate_urls}")
 
-    # Step 6: Verdict & Explainer Agent (Person E)
-    logger.info("[Agent 5: Verdict Agent] Synthesizing final verdict...")
+    # ------------------------------------------------------------------------
+    # STEP 4: Scraper Agent (Person C)
+    # ------------------------------------------------------------------------
+    logger.info(f"[Step 4: Scraper Agent] Scraping {len(candidate_urls)} candidate pages...")
+    scraper_output = run_scraper({"candidate_urls": candidate_urls})
+    scraped_sources = scraper_output.get("sources", [])
+    logger.info(f"[Step 4: Scraper Agent] Successfully scraped {len(scraped_sources)} sources with clean text.")
+
+    # ------------------------------------------------------------------------
+    # STEP 5: Cross-Reference / Analysis Agent (Person D)
+    # ------------------------------------------------------------------------
+    logger.info(f"[Step 5: Analysis Agent] Cross-referencing {len(scraped_sources)} sources against claim...")
+    analysis_output = run_analysis({"sources": scraped_sources, "claim": claim}, claim=claim)
+    per_source = analysis_output.get("per_source", [])
+    logger.info(f"[Step 5: Analysis Agent] Analysis produced {len(per_source)} evaluated sources: {per_source}")
+
+    # ------------------------------------------------------------------------
+    # STEP 6: Verdict & Explainer Agent (Person E)
+    # ------------------------------------------------------------------------
+    logger.info("[Step 6: Verdict Agent] Synthesizing final verdict and writing to RAG cache...")
     final_verdict = verdict_agent.generate_verdict(
         claim=claim,
         per_source=per_source,
-        image_authenticity=image_authenticity,
-        language=language,
+        image_authenticity=None,
+        language=detected_lang,
         write_to_rag=True
     )
 
-    logger.info("--- Pipeline Completed Successfully ---")
+    logger.info(f"=== [DeepFakeLens] Pipeline Completed. Final Verdict: {final_verdict.get('verdict')} (Confidence: {final_verdict.get('confidence')}) ===")
     return final_verdict
 
 
@@ -245,7 +232,7 @@ def answer_follow_up(
                 f"User Question: {question}\n\n"
                 f"Please provide a direct, concise 2-4 sentence explanation in {'Arabic' if language == 'ar' else 'English'}."
             )
-            for groq_model in ["llama-3.3-70b-versatile", "openai/gpt-oss-120b", "qwen/qwen3.8-27b", "openai/gpt-oss-20b", "groq/compound"]:
+            for groq_model in ["llama-3.3-70b-versatile", "openai/gpt-oss-120b", "qwen/qwen3.8-27b", "llama3-70b-8192"]:
                 try:
                     chat_completion = client.chat.completions.create(
                         messages=[

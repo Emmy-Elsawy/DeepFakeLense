@@ -26,7 +26,7 @@ import json
 import logging
 import os
 import uuid
-from typing import Any
+from typing import Any, Optional
 
 import chromadb
 from chromadb.config import Settings
@@ -92,11 +92,9 @@ def init_store() -> None:
 
 
 def _ensure_init() -> None:
-    """Raise if init_store() has not been called yet."""
+    """Auto-initialize store on first use if not already loaded."""
     if _collection is None or _embedder is None:
-        raise RuntimeError(
-            "RAG store is not initialised. Call init_store() first."
-        )
+        init_store()
 
 
 def _embed(text: str) -> list[float]:
@@ -111,7 +109,7 @@ def _embed(text: str) -> list[float]:
 # ---------------------------------------------------------------------------
 
 
-def check_cache(claim_text: str) -> dict[str, Any] | None:
+def check_cache(claim_text: str, similarity_threshold: Optional[float] = None) -> dict[str, Any] | None:
     """
     Embed *claim_text* and query the store for the nearest neighbour.
 
@@ -128,6 +126,7 @@ def check_cache(claim_text: str) -> dict[str, Any] | None:
         logger.warning("check_cache called with empty claim — returning None.")
         return None
 
+    threshold = similarity_threshold if similarity_threshold is not None else SIMILARITY_THRESHOLD
     query_embedding = _embed(claim_text)
 
     results = _collection.query(  # type: ignore[union-attr]
@@ -151,11 +150,11 @@ def check_cache(claim_text: str) -> dict[str, Any] | None:
     logger.info(
         "Cache query — similarity=%.4f (threshold=%.2f) for: %.80s",
         similarity,
-        SIMILARITY_THRESHOLD,
+        threshold,
         claim_text,
     )
 
-    if similarity >= SIMILARITY_THRESHOLD:
+    if similarity >= threshold:
         # Reconstruct the full verdict JSON from stored metadata + document
         metadata: dict = metadatas[0]
         verdict_json: dict = {
@@ -167,7 +166,7 @@ def check_cache(claim_text: str) -> dict[str, Any] | None:
         logger.info("Cache HIT  — verdict=%s", verdict_json["verdict"])
         return verdict_json
 
-    logger.info("Cache MISS — similarity too low (%.4f < %.2f).", similarity, SIMILARITY_THRESHOLD)
+    logger.info("Cache MISS — similarity too low (%.4f < %.2f).", similarity, threshold)
     return None
 
 
