@@ -1,0 +1,30 @@
+[
+  {
+    "id": "text_en_great_wall",
+    "input_type": "text",
+    "text_claim": "I honestly think that NASA finally confirmed that the Great Wall of China is visible from the Moon with the naked eye! That's what I read yesterday.",
+    "image_url": null,
+    "language": "en"
+  },
+  {
+    "id": "text_ar_great_wall",
+    "input_type": "text",
+    "text_claim": "سمعت خبر إن منظمة اليونسكو أعلنت رسمياً إن سور الصين العظيم هو المعلم الوحيد من صنع الإنسان اللي نقدر نشوفه من القمر بالعين المجردة! هل ده حقيقي؟",
+    "image_url": null,
+    "language": "ar"
+  },
+  {
+    "id": "text_en_squid",
+    "input_type": "text",
+    "text_claim": "In my opinion, it is absolutely false that the viral image showing a giant glowing deep-sea squid off the coast of Japan is real. It's obviously fake.",
+    "image_url": null,
+    "language": "en"
+  },
+  {
+    "id": "image_squid",
+    "input_type": "image",
+    "text_claim": "Photograph shows a real encounter with a giant glowing deep-sea squid off the coast of Japan.",
+    "image_url": "https://example.com/viral_squid.png",
+    "language": "en"
+  }
+]
