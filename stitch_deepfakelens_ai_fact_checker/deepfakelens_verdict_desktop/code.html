@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Verdict: The moon is made of green cheese</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Newsreader:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error": "#ffffff",
+                      "inverse-on-surface": "#eaf1ff",
+                      "secondary-container": "#90efef",
+                      "on-primary-fixed": "#091a3d",
+                      "on-error-container": "#93000a",
+                      "secondary-fixed-dim": "#76d6d5",
+                      "surface-variant": "#d3e4fe",
+                      "on-secondary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed-variant": "#5f4117",
+                      "on-primary-fixed-variant": "#37466b",
+                      "primary-container": "#1b2a4e",
+                      "surface-container-highest": "#d3e4fe",
+                      "tertiary-container": "#402600",
+                      "error": "#ba1a1a",
+                      "secondary": "#006a6a",
+                      "outline": "#75777f",
+                      "surface-bright": "#f8f9ff",
+                      "primary-fixed": "#dae2ff",
+                      "on-secondary-fixed-variant": "#004f4f",
+                      "primary": "#041539",
+                      "on-surface": "#0b1c30",
+                      "surface-container": "#e5eeff",
+                      "surface-dim": "#cbdbf5",
+                      "on-tertiary-fixed": "#2a1700",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-low": "#eff4ff",
+                      "on-surface-variant": "#45464e",
+                      "on-primary-container": "#8392bc",
+                      "outline-variant": "#c5c6cf",
+                      "tertiary-fixed": "#ffddb7",
+                      "tertiary-fixed-dim": "#ebbf89",
+                      "primary-fixed-dim": "#b7c6f2",
+                      "background": "#f8f9ff",
+                      "surface": "#f8f9ff",
+                      "surface-tint": "#4f5d85",
+                      "on-secondary-fixed": "#002020",
+                      "on-secondary-container": "#006e6e",
+                      "on-background": "#0b1c30",
+                      "on-tertiary-container": "#b48c5b",
+                      "surface-container-high": "#dce9ff",
+                      "tertiary": "#241400",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed": "#93f2f2",
+                      "inverse-primary": "#b7c6f2",
+                      "inverse-surface": "#213145"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "40px",
+                      "gutter": "24px",
+                      "container-max": "1200px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Newsreader"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Newsreader"
+                      ],
+                      "display-lg": [
+                              "Newsreader"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Newsreader"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .card-shadow {
+            box-shadow: 0 4px 20px 0px rgba(4, 21, 57, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-background w-full border-b border-outline-variant z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="text-headline-md font-headline-md font-bold text-primary tracking-tight">
+                DeepFakeLens
+            </div>
+<div class="hidden md:flex space-x-8">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 text-label-md font-label-md" href="#">How it Works</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 text-label-md font-label-md" href="#">Resources</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="hidden md:block text-label-md font-label-md text-primary border border-primary px-4 py-2 rounded hover:bg-surface-dim transition-colors">
+                    Learn More
+                </button>
+<button class="text-label-md font-label-md bg-primary text-on-primary px-4 py-2 rounded hover:opacity-90 transition-opacity">
+                    Analyze Now
+                </button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-24">
+<div class="max-w-3xl mx-auto space-y-12">
+<!-- Verdict Card -->
+<section class="bg-surface-container-lowest card-shadow border border-outline-variant rounded-xl p-8 md:p-12 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-error"></div>
+<div class="space-y-8">
+<!-- Claim -->
+<div class="space-y-4">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Claim Investigated</p>
+<blockquote class="text-display-lg font-display-lg text-on-surface border-l-4 border-outline-variant pl-6 py-2 italic">
+                            "The moon is made of green cheese."
+                        </blockquote>
+</div>
+<!-- Verdict -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 border-t border-b border-outline-variant py-6">
+<div class="flex items-center gap-4">
+<div class="bg-error-container text-on-error-container rounded-full p-3 flex items-center justify-center">
+<span class="material-symbols-outlined icon-fill text-[32px]" data-icon="cancel">cancel</span>
+</div>
+<div>
+<h2 class="text-headline-lg font-headline-lg text-error">False</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">The core assertion is demonstrably incorrect.</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 min-w-[200px]">
+<div class="flex justify-between items-end">
+<span class="text-label-sm font-label-sm text-on-surface-variant">System Confidence</span>
+<span class="text-label-md font-label-md text-on-surface">98%</span>
+</div>
+<div class="w-full h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[98%] rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Explanation -->
+<div class="space-y-4">
+<h3 class="text-headline-md font-headline-md text-on-surface">Forensic Analysis</h3>
+<div class="prose prose-slate max-w-none text-body-lg font-body-lg text-on-surface-variant leading-relaxed">
+<p>Scientific consensus, supported by extensive geological and astronomical data collected over decades (including physical samples returned from the Apollo missions), definitively proves that the Moon is composed of silicate rock and metals, not cheese.</p>
+<p class="mt-4">The composition of the lunar crust consists primarily of oxygen, silicon, magnesium, iron, calcium, and aluminum. The "green cheese" notion is a historical myth and metaphorical expression originating from the Middle Ages.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Sources Section -->
+<section class="space-y-6">
+<div class="flex items-center gap-2 border-b border-outline-variant pb-4">
+<span class="material-symbols-outlined text-primary" data-icon="library_books">library_books</span>
+<h3 class="text-headline-md font-headline-md text-on-surface">Verified Sources</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Source 1 -->
+<a class="block bg-surface-container-lowest border border-outline-variant rounded-lg p-5 hover:border-primary transition-colors group" href="#">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 bg-surface-dim rounded flex items-center justify-center text-label-sm">NASA</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">nasa.gov</span>
+</div>
+<span class="inline-flex items-center px-2 py-1 rounded bg-error-container text-on-error-container text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[14px] mr-1" data-icon="block">block</span> Contradicts
+                            </span>
+</div>
+<h4 class="text-body-md font-body-md font-medium text-on-surface group-hover:text-primary transition-colors">Composition of the Moon: What is the Moon made of?</h4>
+</a>
+<!-- Source 2 -->
+<a class="block bg-surface-container-lowest border border-outline-variant rounded-lg p-5 hover:border-primary transition-colors group" href="#">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 bg-surface-dim rounded flex items-center justify-center text-label-sm">NG</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">nationalgeographic.com</span>
+</div>
+<span class="inline-flex items-center px-2 py-1 rounded bg-error-container text-on-error-container text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[14px] mr-1" data-icon="block">block</span> Contradicts
+                            </span>
+</div>
+<h4 class="text-body-md font-body-md font-medium text-on-surface group-hover:text-primary transition-colors">The Moon: Facts, Formation, and Phases</h4>
+</a>
+<!-- Source 3 -->
+<a class="block bg-surface-container-lowest border border-outline-variant rounded-lg p-5 hover:border-primary transition-colors group" href="#">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 bg-surface-dim rounded flex items-center justify-center text-label-sm">Brit</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">britannica.com</span>
+</div>
+<span class="inline-flex items-center px-2 py-1 rounded bg-error-container text-on-error-container text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[14px] mr-1" data-icon="block">block</span> Contradicts
+                            </span>
+</div>
+<h4 class="text-body-md font-body-md font-medium text-on-surface group-hover:text-primary transition-colors">Moon - Physical Properties and Composition</h4>
+</a>
+</div>
+</section>
+<!-- Follow up & Actions -->
+<section class="space-y-8 pt-8">
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-2 flex items-center focus-within:ring-2 focus-within:ring-primary focus-within:border-transparent transition-all">
+<span class="material-symbols-outlined text-on-surface-variant ml-3" data-icon="forum">forum</span>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-body-md font-body-md text-on-surface placeholder:text-on-surface-variant py-3 px-4" placeholder="Ask a follow-up about this..." type="text"/>
+<button class="bg-primary text-on-primary p-2 rounded hover:opacity-90 transition-opacity flex items-center justify-center h-10 w-10">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+</button>
+</div>
+<div class="flex justify-center border-t border-outline-variant pt-8">
+<button class="flex items-center gap-2 text-label-md font-label-md text-primary hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined" data-icon="refresh">refresh</span>
+                        Check another claim
+                    </button>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-bright border-t border-outline-variant w-full mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-8 max-w-container-max mx-auto space-y-4 md:space-y-0">
+<div class="text-label-md font-label-md font-bold text-primary">
+                DeepFakeLens
+            </div>
+<div class="flex flex-wrap justify-center gap-6 text-label-sm font-label-sm text-on-surface-variant">
+<a class="hover:text-primary underline transition-all focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">Powered by trusted sources</a>
+<a class="hover:text-primary underline transition-all focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">No login required</a>
+<a class="hover:text-primary underline transition-all focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">Free to use</a>
+<a class="hover:text-primary underline transition-all focus:outline-none focus:ring-2 focus:ring-primary rounded flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]" data-icon="language">language</span>
+                    Language Selector
+                </a>
+</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">
+                © 2024 DeepFakeLens. Forensic Verification Suite.
+            </div>
+</div>
+</footer>
+</body></html>

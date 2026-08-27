@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DeepFakeLens - Verify Claims &amp; Images</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Newsreader:opsz,wght@6..72,500;6..72,600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#1b2a4e",
+                    "surface-container": "#e5eeff",
+                    "surface-dim": "#cbdbf5",
+                    "surface-container-low": "#eff4ff",
+                    "on-primary-container": "#8392bc",
+                    "surface-tint": "#4f5d85",
+                    "surface-bright": "#f8f9ff",
+                    "on-secondary-fixed-variant": "#004f4f",
+                    "on-primary-fixed": "#091a3d",
+                    "secondary-container": "#90efef",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#eaf1ff",
+                    "secondary": "#006a6a",
+                    "on-tertiary-container": "#b48c5b",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#402600",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#b7c6f2",
+                    "on-surface-variant": "#45464e",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#dae2ff",
+                    "secondary-fixed": "#93f2f2",
+                    "background": "#f8f9ff",
+                    "on-secondary-fixed": "#002020",
+                    "tertiary-fixed-dim": "#ebbf89",
+                    "secondary-fixed-dim": "#76d6d5",
+                    "on-primary-fixed-variant": "#37466b",
+                    "on-surface": "#0b1c30",
+                    "outline": "#75777f",
+                    "surface-container-highest": "#d3e4fe",
+                    "primary": "#041539",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#0b1c30",
+                    "outline-variant": "#c5c6cf",
+                    "on-secondary-container": "#006e6e",
+                    "surface-container-high": "#dce9ff",
+                    "inverse-primary": "#b7c6f2",
+                    "surface-variant": "#d3e4fe",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-tertiary-fixed-variant": "#5f4117",
+                    "tertiary": "#241400",
+                    "inverse-surface": "#213145",
+                    "surface": "#f8f9ff",
+                    "tertiary-fixed": "#ffddb7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "container-max": "1200px",
+                    "margin-desktop": "40px"
+            },
+            "fontFamily": {
+                    "label-md": [
+                            "Inter"
+                    ],
+                    "display-lg": [
+                            "Newsreader"
+                    ],
+                    "headline-md": [
+                            "Newsreader"
+                    ],
+                    "label-sm": [
+                            "Inter"
+                    ],
+                    "headline-lg": [
+                            "Newsreader"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "headline-lg-mobile": [
+                            "Newsreader"
+                    ]
+            },
+            "fontSize": {
+                    "label-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "28px",
+                            {
+                                    "lineHeight": "36px",
+                                    "fontWeight": "600"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(4, 21, 57, 0.05);
+        }
+        
+        .subtle-shadow {
+            box-shadow: 0 4px 20px rgba(4, 21, 57, 0.04);
+        }
+        
+        .tab-active {
+            border-bottom: 2px solid #041539; /* primary */
+            color: #041539;
+        }
+        
+        .tab-inactive {
+            color: #45464e; /* on-surface-variant */
+            border-bottom: 2px solid transparent;
+        }
+        
+        .tab-inactive:hover {
+            color: #041539;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased">
+<!-- TopNavBar -->
+<nav class="bg-background dark:bg-background docked full-width top-0 border-b border-outline-variant dark:border-outline flat no shadows hidden md:flex">
+<div class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max mx-auto">
+<!-- Logo & Tagline -->
+<div class="flex items-center gap-6">
+<a class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed tracking-tight" href="#">
+                    DeepFakeLens
+                </a>
+<span class="text-body-md font-body-md text-on-surface-variant hidden lg:block border-l border-outline-variant pl-6">
+                    Check any claim or image in seconds.
+                </span>
+</div>
+<!-- Navigation Links -->
+<div class="flex items-center space-x-8">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors duration-200 text-label-md font-label-md" href="#">
+                    How it Works
+                </a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors duration-200 text-label-md font-label-md" href="#">
+                    Resources
+                </a>
+</div>
+<!-- Actions -->
+<div class="flex items-center space-x-4">
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors duration-200 text-label-md font-label-md">
+                    Learn More
+                </button>
+<button class="bg-[#F97316] hover:bg-[#EA580C] text-white px-6 py-2 rounded text-label-md font-label-md transition-colors duration-200 shadow-sm">
+                    Analyze Now
+                </button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col items-center justify-center px-gutter py-[80px] md:py-[120px] relative w-full">
+<div class="max-w-container-max w-full mx-auto flex flex-col items-center">
+<!-- Mobile Header (Visible only md:hidden) -->
+<div class="text-center mb-8 md:hidden">
+<h1 class="text-headline-lg-mobile font-headline-lg-mobile font-bold text-primary mb-2">DeepFakeLens</h1>
+<p class="text-body-md font-body-md text-on-surface-variant">Check any claim or image in seconds.</p>
+</div>
+<!-- Central Input Card -->
+<div class="w-full max-w-3xl glass-panel subtle-shadow rounded-xl p-8 mb-6 relative overflow-hidden bg-surface-container-lowest border border-outline-variant">
+<!-- Tabs -->
+<div class="flex border-b border-outline-variant mb-6" role="tablist">
+<button aria-selected="true" class="tab-active text-label-md font-label-md pb-3 px-4 mr-4 transition-all duration-200 focus:outline-none" id="tab-text" role="tab">
+                        Text claim
+                    </button>
+<button aria-selected="false" class="tab-inactive text-label-md font-label-md pb-3 px-4 transition-all duration-200 focus:outline-none" id="tab-image" role="tab">
+                        Upload image
+                    </button>
+</div>
+<!-- Input Area (Text) -->
+<div class="w-full h-48 mb-6 transition-opacity duration-300" id="panel-text" role="tabpanel">
+<textarea class="w-full h-full p-4 bg-surface-bright border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary resize-none placeholder-on-surface-variant placeholder-opacity-70 transition-shadow" placeholder="Paste a claim, headline, or statement to check..."></textarea>
+</div>
+<!-- Input Area (Image - Hidden by default) -->
+<div class="w-full h-48 mb-6 hidden opacity-0 transition-opacity duration-300" id="panel-image" role="tabpanel">
+<div class="w-full h-full border-2 border-dashed border-outline-variant rounded-lg bg-surface-bright flex flex-col items-center justify-center cursor-pointer hover:bg-surface-container transition-colors group">
+<span class="material-symbols-outlined text-on-surface-variant mb-3 group-hover:text-primary" data-icon="cloud_upload" style="font-size: 32px;">cloud_upload</span>
+<p class="text-body-md font-body-md text-on-surface-variant group-hover:text-primary">Drag an image here or click to upload</p>
+</div>
+</div>
+<!-- Action Button -->
+<div class="flex justify-center mt-2">
+<button class="w-full md:w-auto min-w-[200px] bg-primary hover:bg-primary-container text-on-primary text-label-md font-label-md py-4 px-8 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="search" data-weight="fill">search</span>
+                        Check
+                    </button>
+</div>
+</div>
+<!-- Language Selector (Aligned Right relative to card) -->
+<div class="w-full max-w-3xl flex justify-end">
+<div class="relative inline-block text-left">
+<select class="appearance-none bg-transparent border-none text-label-sm font-label-sm text-on-surface-variant hover:text-primary pr-8 focus:ring-0 cursor-pointer">
+<option value="auto">Auto-detect</option>
+<option value="en">English</option>
+<option value="ar">العربية</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-bright dark:bg-surface-container-lowest full-width bottom border-t border-outline-variant dark:border-outline flat no shadows mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-desktop py-8 max-w-container-max mx-auto space-y-6 md:space-y-0">
+<!-- Trust Signals -->
+<div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 order-2 md:order-1">
+<div class="flex items-center gap-2 text-on-surface-variant dark:text-on-surface-variant text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="verified_user">verified_user</span>
+                    Powered by trusted sources
+                </div>
+<div class="flex items-center gap-2 text-on-surface-variant dark:text-on-surface-variant text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="lock_open">lock_open</span>
+                    No login required
+                </div>
+<div class="flex items-center gap-2 text-on-surface-variant dark:text-on-surface-variant text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="money_off">money_off</span>
+                    Free to use
+                </div>
+</div>
+<!-- Copyright -->
+<div class="text-on-surface-variant dark:text-on-surface-variant text-label-sm font-label-sm order-3 md:order-2">
+                © 2024 DeepFakeLens. Forensic Verification Suite.
+            </div>
+<!-- Footer Logo / Branding -->
+<div class="text-label-md font-label-md font-bold text-primary order-1 md:hidden">
+                DeepFakeLens
+            </div>
+</div>
+</footer>
+<!-- Basic Tab Logic -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabText = document.getElementById('tab-text');
+            const tabImage = document.getElementById('tab-image');
+            const panelText = document.getElementById('panel-text');
+            const panelImage = document.getElementById('panel-image');
+
+            function switchTab(activeTab, inactiveTab, activePanel, inactivePanel) {
+                // Update tabs
+                activeTab.classList.remove('tab-inactive');
+                activeTab.classList.add('tab-active');
+                activeTab.setAttribute('aria-selected', 'true');
+                
+                inactiveTab.classList.remove('tab-active');
+                inactiveTab.classList.add('tab-inactive');
+                inactiveTab.setAttribute('aria-selected', 'false');
+
+                // Update panels with simple fade
+                inactivePanel.classList.remove('opacity-100');
+                inactivePanel.classList.add('opacity-0');
+                
+                setTimeout(() => {
+                    inactivePanel.classList.add('hidden');
+                    activePanel.classList.remove('hidden');
+                    
+                    // Small delay to allow display block to apply before changing opacity
+                    setTimeout(() => {
+                        activePanel.classList.remove('opacity-0');
+                        activePanel.classList.add('opacity-100');
+                    }, 50);
+                }, 150); // wait for fade out
+            }
+
+            tabText.addEventListener('click', () => switchTab(tabText, tabImage, panelText, panelImage));
+            tabImage.addEventListener('click', () => switchTab(tabImage, tabText, panelImage, panelText));
+        });
+    </script>
+</body></html>
