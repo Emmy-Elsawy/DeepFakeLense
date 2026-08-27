@@ -1,0 +1,25 @@
+{
+  "claim": "UNESCO declared the Great Wall of China as the only man-made structure visible from the Moon with the naked eye.",
+  "per_source": [
+    {
+      "url": "https://www.nasa.gov/vision/space/workinginspace/great_wall.html",
+      "title": "NASA - China's Wall Less Great in View from Space",
+      "stance": "contradicts",
+      "credibility_tier": "high"
+    },
+    {
+      "url": "https://www.scientificamerican.com/article/is-chinas-great-wall-visible-space/",
+      "title": "Scientific American - Is China's Great Wall Visible from Space?",
+      "stance": "contradicts",
+      "credibility_tier": "high"
+    },
+    {
+      "url": "https://whc.unesco.org/en/list/438/",
+      "title": "UNESCO World Heritage Centre - The Great Wall",
+      "stance": "context",
+      "credibility_tier": "high"
+    }
+  ],
+  "image_authenticity": null,
+  "language": "en"
+}
