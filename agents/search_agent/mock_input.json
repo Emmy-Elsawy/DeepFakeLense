@@ -1,0 +1,39 @@
+{
+  "_comment": "Three test scenarios for standalone search_agent testing",
+  "test_cases": [
+    {
+      "id": "cache_hit",
+      "description": "English claim that should be in RAG cache after seeding — expect check_cache to return a verdict and search_agent to be skipped",
+      "input": {
+        "claim": "The COVID-19 vaccine contains microchips that track your location.",
+        "language": "en"
+      },
+      "expected_cache_hit": true,
+      "expected_verdict": "false"
+    },
+    {
+      "id": "cache_miss_en",
+      "description": "English claim not in cache — expect check_cache to return None and search_agent to run and return candidate_urls",
+      "input": {
+        "claim": "Scientists have discovered a new antibiotic that is effective against all drug-resistant bacteria.",
+        "language": "en"
+      },
+      "expected_cache_hit": false,
+      "expected_output_shape": {
+        "candidate_urls": ["string"]
+      }
+    },
+    {
+      "id": "cache_miss_ar",
+      "description": "Arabic-language claim not in cache — expect Arabic-aware query, search_agent returns candidate_urls",
+      "input": {
+        "claim": "العلماء اكتشفوا علاجاً نهائياً لمرض السكري من النوع الثاني باستخدام الذكاء الاصطناعي",
+        "language": "ar"
+      },
+      "expected_cache_hit": false,
+      "expected_output_shape": {
+        "candidate_urls": ["string"]
+      }
+    }
+  ]
+}
