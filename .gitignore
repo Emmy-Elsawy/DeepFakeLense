@@ -1,12 +1,33 @@
-.venv/
-venv/
+# Python bytecode
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
-*.pyd
-.pytest_cache/
-.coverage
-htmlcov/
-.DS_Store
-.env
+
+# ChromaDB persistent store (local only, never commit)
 chroma_db/
+**/chroma_db/
+
+# Environment variables
+.env
+.env.local
+.env.*
+
+# Virtual environments
+venv/
+.venv/
+env/
+.python-version
+
+# IDE / OS
+.vscode/
+.idea/
+*.DS_Store
+Thumbs.db
+
+# Test artifacts
+.pytest_cache/
+htmlcov/
+.coverage
+
+# Logs
+*.log
