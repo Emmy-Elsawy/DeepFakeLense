@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Verdict: DeepFakeLens</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Newsreader:wght@500;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error": "#ffffff",
+                      "inverse-on-surface": "#eaf1ff",
+                      "secondary-container": "#90efef",
+                      "on-primary-fixed": "#091a3d",
+                      "on-error-container": "#93000a",
+                      "secondary-fixed-dim": "#76d6d5",
+                      "surface-variant": "#d3e4fe",
+                      "on-secondary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed-variant": "#5f4117",
+                      "on-primary-fixed-variant": "#37466b",
+                      "primary-container": "#1b2a4e",
+                      "surface-container-highest": "#d3e4fe",
+                      "tertiary-container": "#402600",
+                      "error": "#ba1a1a",
+                      "secondary": "#006a6a",
+                      "outline": "#75777f",
+                      "surface-bright": "#f8f9ff",
+                      "primary-fixed": "#dae2ff",
+                      "on-secondary-fixed-variant": "#004f4f",
+                      "primary": "#041539",
+                      "on-surface": "#0b1c30",
+                      "surface-container": "#e5eeff",
+                      "surface-dim": "#cbdbf5",
+                      "on-tertiary-fixed": "#2a1700",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-low": "#eff4ff",
+                      "on-surface-variant": "#45464e",
+                      "on-primary-container": "#8392bc",
+                      "outline-variant": "#c5c6cf",
+                      "tertiary-fixed": "#ffddb7",
+                      "tertiary-fixed-dim": "#ebbf89",
+                      "primary-fixed-dim": "#b7c6f2",
+                      "background": "#f8f9ff",
+                      "surface": "#f8f9ff",
+                      "surface-tint": "#4f5d85",
+                      "on-secondary-fixed": "#002020",
+                      "on-secondary-container": "#006e6e",
+                      "on-background": "#0b1c30",
+                      "on-tertiary-container": "#b48c5b",
+                      "surface-container-high": "#dce9ff",
+                      "tertiary": "#241400",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed": "#93f2f2",
+                      "inverse-primary": "#b7c6f2",
+                      "inverse-surface": "#213145"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "40px",
+                      "gutter": "24px",
+                      "container-max": "1200px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Newsreader"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Newsreader"
+                      ],
+                      "display-lg": [
+                              "Newsreader"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Newsreader"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md text-body-md min-h-screen flex flex-col antialiased selection:bg-secondary selection:text-on-secondary">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface text-primary dark:text-primary-fixed docked full-width top-0 flat no shadows sticky z-50 transition-colors duration-200 border-b border-outline-variant">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">lens</span>
+<span class="text-headline-md font-headline-md font-extrabold text-primary dark:text-primary-fixed tracking-tight">DeepFakeLens</span>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 flex flex-col gap-8 md:gap-16 items-center">
+<!-- Verdict Card -->
+<article class="w-full max-w-[800px] bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(4,21,57,0.04)] border border-outline-variant p-6 md:p-10 flex flex-col gap-6 relative overflow-hidden">
+<!-- Decorative accent -->
+<div class="absolute top-0 left-0 w-full h-2 bg-error"></div>
+<div class="flex flex-col gap-2">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Claim Analyzed</p>
+<h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-on-surface">"The moon is made of green cheese."</h1>
+</div>
+<div class="flex items-center gap-4 bg-error-container/30 border border-error/20 p-4 rounded-lg w-fit">
+<span class="material-symbols-outlined text-error text-[32px]" style="font-variation-settings: 'FILL' 1;">cancel</span>
+<div class="flex flex-col">
+<span class="text-headline-md font-headline-md text-error font-bold tracking-tight">FALSE</span>
+<span class="text-label-sm font-label-sm text-error/80 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">policy</span>
+                        98% confidence score
+                    </span>
+</div>
+</div>
+<div class="text-body-md font-body-md text-on-surface-variant leading-relaxed space-y-4">
+<p>Forensic analysis definitively refutes the claim that the moon is composed of any dairy product, green or otherwise. Spectral data from numerous lunar missions, including the Apollo program, confirms the moon is primarily composed of rock and regolith.</p>
+<p>The "green cheese" concept is a well-documented historical myth and idiom, not a scientifically supported hypothesis regarding lunar composition.</p>
+</div>
+</article>
+<!-- Sources Section -->
+<section class="w-full max-w-[800px] flex flex-col gap-4">
+<h2 class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider border-b border-outline-variant pb-2">Verified Sources</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Source Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 flex flex-col gap-3 hover:shadow-[0_2px_10px_rgba(4,21,57,0.05)] transition-shadow">
+<div class="flex justify-between items-start">
+<span class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">public</span>
+                            nasa.gov
+                        </span>
+<span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider border border-error/20">Contradicts</span>
+</div>
+<h3 class="text-body-md font-body-md text-on-surface font-medium line-clamp-2">Lunar Composition and Surface Characteristics Analysis Report</h3>
+</div>
+<!-- Source Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 flex flex-col gap-3 hover:shadow-[0_2px_10px_rgba(4,21,57,0.05)] transition-shadow">
+<div class="flex justify-between items-start">
+<span class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">science</span>
+                            nature.com
+                        </span>
+<span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider border border-error/20">Contradicts</span>
+</div>
+<h3 class="text-body-md font-body-md text-on-surface font-medium line-clamp-2">Geochemical mapping of the lunar surface reveals silicate dominance</h3>
+</div>
+</div>
+</section>
+<!-- Actions -->
+<section class="w-full max-w-[800px] flex flex-col gap-6 border-t border-outline-variant pt-8">
+<div class="w-full">
+<label class="sr-only" for="followup">Ask a follow-up question</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-on-surface-variant">chat_bubble</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant text-on-surface placeholder:text-on-surface-variant/50 rounded-lg py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" id="followup" placeholder="Ask a follow-up question..." type="text"/>
+<button class="absolute right-2 p-1.5 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+<div class="flex justify-center w-full">
+<button class="px-6 py-3 border border-outline-variant text-primary font-label-md text-label-md rounded-lg hover:bg-surface-container-low transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">search</span>
+                    Check Another Claim
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface dark:bg-surface text-on-surface-variant dark:text-on-surface-variant border-t border-outline-variant dark:border-outline flat no shadows mt-auto transition-opacity duration-200">
+<div class="w-full px-margin-mobile md:px-margin-desktop py-gutter flex flex-col md:flex-row justify-between items-center gap-4 max-w-container-max mx-auto text-body-md font-body-md">
+<span class="text-label-md font-label-md text-primary dark:text-primary-fixed">© 2024 DeepFakeLens. Forensic precision for digital truth.</span>
+<ul class="flex flex-wrap justify-center gap-4 text-label-sm font-label-sm">
+<li class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer">Powered by trusted sources</li>
+<li class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer">No login required</li>
+<li class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer">Free to use</li>
+<li class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer">Auto-detect / English / العربية</li>
+</ul>
+</div>
+</footer>
+</body></html>

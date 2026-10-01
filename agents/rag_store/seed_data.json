@@ -1,0 +1,274 @@
+[
+  {
+    "claim": "The COVID-19 vaccine contains microchips that track your location.",
+    "verdict": "false",
+    "explanation": "Multiple independent investigations, including analysis by the CDC and peer-reviewed laboratories, found no microchips or tracking devices in any approved COVID-19 vaccine. The claim originated from misinterpreted social media posts.",
+    "sources": [
+      "https://www.reuters.com/article/uk-factcheck-vaccine-microchip/fact-check-covid-19-vaccines-do-not-contain-microchips-idUSKBN29B2JR",
+      "https://www.cdc.gov/coronavirus/2019-ncov/vaccines/facts.html"
+    ]
+  },
+  {
+    "claim": "Drinking bleach can cure COVID-19.",
+    "verdict": "false",
+    "explanation": "Consuming bleach or any disinfectant is extremely dangerous and can cause severe injury or death. No credible medical authority endorses this claim. The WHO and CDC have issued explicit warnings against it.",
+    "sources": [
+      "https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public/myth-busters",
+      "https://www.cdc.gov/niosh/topics/emres/chemagent.html"
+    ]
+  },
+  {
+    "claim": "The Great Wall of China is visible from space with the naked eye.",
+    "verdict": "false",
+    "explanation": "Multiple astronauts, including Chinese astronaut Yang Liwei, have confirmed the Great Wall is not visible from space with the naked eye. NASA has also addressed this myth. The wall is too narrow relative to its length to be discernible without optical aids.",
+    "sources": [
+      "https://www.nasa.gov/vision/space/workinginspace/great_wall.html",
+      "https://www.bbc.com/future/article/20150904-is-the-great-wall-of-china-visible-from-space"
+    ]
+  },
+  {
+    "claim": "Albert Einstein failed mathematics in school.",
+    "verdict": "false",
+    "explanation": "Historical records show Einstein excelled at mathematics and physics throughout his schooling. This myth likely arose from misinterpreting the Swiss grading scale, where 6 is the highest grade and 1 is the lowest — the reverse of some other systems.",
+    "sources": [
+      "https://www.snopes.com/fact-check/einstein-flunk-math/",
+      "https://www.reuters.com/article/us-factcheck-einstein-math-idUSKBN27M28A"
+    ]
+  },
+  {
+    "claim": "Humans only use 10% of their brains.",
+    "verdict": "false",
+    "explanation": "Brain imaging studies show that humans use virtually all parts of their brain and that most of the brain is active almost all the time. The myth has been debunked by neurologists and cognitive scientists consistently.",
+    "sources": [
+      "https://www.scientificamerican.com/article/do-people-only-use-10-percent-of-their-brains/",
+      "https://www.bbc.com/future/article/20121112-do-we-only-use-10-of-our-brains"
+    ]
+  },
+  {
+    "claim": "Climate change is primarily caused by human activities, particularly the burning of fossil fuels.",
+    "verdict": "true",
+    "explanation": "The overwhelming scientific consensus, supported by NASA, NOAA, the IPCC, and thousands of peer-reviewed studies, confirms that human activities — especially burning coal, oil, and natural gas — are the dominant cause of observed climate change since the mid-20th century.",
+    "sources": [
+      "https://climate.nasa.gov/causes/",
+      "https://www.ipcc.ch/report/ar6/wg1/",
+      "https://www.noaa.gov/education/resource-collections/climate/climate-change-causes"
+    ]
+  },
+  {
+    "claim": "The Earth is flat.",
+    "verdict": "false",
+    "explanation": "Centuries of scientific evidence — including satellite imagery, GPS systems, circumnavigation, gravity physics, and direct observation from space — confirm that Earth is an oblate spheroid. This is one of the most thoroughly debunked conspiracy theories.",
+    "sources": [
+      "https://www.nasa.gov/audience/forstudents/5-8/features/nasa-knows/what-is-earth-58.html",
+      "https://www.bbc.com/future/article/20160126-what-would-happen-if-the-earth-were-flat"
+    ]
+  },
+  {
+    "claim": "5G towers spread the COVID-19 virus.",
+    "verdict": "false",
+    "explanation": "Viruses cannot travel on radio waves or mobile networks. COVID-19 is caused by the SARS-CoV-2 virus, which spreads through respiratory droplets. Countries without 5G infrastructure also experienced COVID-19 outbreaks, further disproving this claim.",
+    "sources": [
+      "https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public/myth-busters#5g",
+      "https://www.reuters.com/article/uk-factcheck-5g-coronavirus-idUSKBN21Y1AT"
+    ]
+  },
+  {
+    "claim": "Vaccines cause autism.",
+    "verdict": "false",
+    "explanation": "The original 1998 study claiming a link between the MMR vaccine and autism was retracted by The Lancet due to data manipulation and ethical violations. Dozens of large-scale studies involving millions of children have found no causal link between vaccines and autism.",
+    "sources": [
+      "https://www.cdc.gov/vaccinesafety/concerns/autism.html",
+      "https://www.who.int/news-room/questions-and-answers/item/vaccines-and-autism"
+    ]
+  },
+  {
+    "claim": "The moon landing in 1969 was faked by NASA.",
+    "verdict": "false",
+    "explanation": "The Apollo 11 moon landing is supported by extensive physical evidence including moon rocks, retroreflectors left on the lunar surface, independent tracking by other nations including the Soviet Union, and analysis by thousands of scientists worldwide.",
+    "sources": [
+      "https://www.nasa.gov/mission_pages/apollo/apollo11.html",
+      "https://www.snopes.com/facts/science-tech/moon-landing-hoax/"
+    ]
+  },
+  {
+    "claim": "Eating carrots improves your night vision significantly.",
+    "verdict": "misleading",
+    "explanation": "While vitamin A (found in carrots) is essential for normal vision and its deficiency can cause night blindness, eating extra carrots beyond normal dietary needs will not enhance vision in people with adequate nutrition. The myth was partly propagated as British WWII propaganda.",
+    "sources": [
+      "https://www.bbc.com/future/article/20131210-can-carrots-really-help-you-see",
+      "https://www.snopes.com/fact-check/do-carrots-improve-your-eyesight/"
+    ]
+  },
+  {
+    "claim": "A new strain of bird flu H5N1 has been confirmed in human-to-human transmission in Southeast Asia.",
+    "verdict": "unverified",
+    "explanation": "As of the latest available reports, WHO has not confirmed sustained human-to-human transmission of H5N1. Sporadic cases exist but no outbreak meeting that criteria has been declared. The situation is being monitored closely.",
+    "sources": [
+      "https://www.who.int/news-room/fact-sheets/detail/influenza-(avian-and-other-zoonotic)",
+      "https://www.cdc.gov/flu/avianflu/h5n1-virus.htm"
+    ]
+  },
+  {
+    "claim": "لقاح كوفيد-19 يحتوي على شرائح إلكترونية لتتبع الأشخاص",
+    "verdict": "false",
+    "explanation": "لا توجد أي أدلة علمية على وجود شرائح إلكترونية في لقاحات كوفيد-19. وقد أكدت منظمة الصحة العالمية وهيئات الرقابة الصحية المستقلة في جميع أنحاء العالم خلو اللقاحات من أي أجهزة تتبع. هذه المعلومة مضللة وخاطئة تماماً.",
+    "sources": [
+      "https://www.who.int/ar/emergencies/diseases/novel-coronavirus-2019/advice-for-public/myth-busters",
+      "https://misbar.com/factcheck/2021/01/05/هل-يحتوي-لقاح-كوفيد-على-شريحة-تتبع"
+    ]
+  },
+  {
+    "claim": "شرب الماء الساخن مع الليمون يقتل فيروس كورونا",
+    "verdict": "false",
+    "explanation": "لا يوجد أي دليل علمي على أن شرب الماء الساخن مع الليمون يقتل فيروس كورونا أو يعالجه. هذه المعلومة انتشرت على نطاق واسع عبر وسائل التواصل الاجتماعي دون أي أساس طبي. منظمة الصحة العالمية حذّرت من هذه الادعاءات.",
+    "sources": [
+      "https://www.who.int/ar/emergencies/diseases/novel-coronavirus-2019/advice-for-public/myth-busters",
+      "https://fatabyyano.net/هل-شرب-الماء-الساخن-يقي-من-كورونا/"
+    ]
+  },
+  {
+    "claim": "الحكومة تضيف مواد كيميائية إلى مياه الشرب للتحكم في العقول",
+    "verdict": "false",
+    "explanation": "هذه نظرية مؤامرة لا أساس لها من الصحة. مياه الشرب تخضع لرقابة صارمة من الجهات الصحية المعتمدة، وعمليات التنقية والمعالجة موثقة ومعلنة بالكامل. لا يوجد أي دليل على وجود مواد للتحكم في السلوك البشري في مياه الشرب.",
+    "sources": [
+      "https://www.who.int/water_sanitation_health/water-quality/en/",
+      "https://misbar.com/factcheck/2020/02/20/هل-تضيف-الحكومات-مواد-للسيطرة-على-العقول-في-مياه-الشرب"
+    ]
+  },
+  {
+    "claim": "الدجاج المقلي يسبب السرطان بشكل مباشر",
+    "verdict": "misleading",
+    "explanation": "الأكلة الدسمة المقلية عند طهيها بدرجات حرارة عالية تُنتج مواد مثل الأكريلاميد التي أثبتت الدراسات أنها مرتبطة بزيادة خطر الإصابة ببعض أنواع السرطان في نماذج حيوانية، لكن العلاقة السببية المباشرة لدى البشر لم تُثبت بشكل قاطع حتى الآن. الاستهلاك المعتدل لا يُعدّ خطراً داهماً.",
+    "sources": [
+      "https://www.cancer.org/cancer/cancer-causes/acrylamide.html",
+      "https://www.who.int/news-room/questions-and-answers/item/acrylamide"
+    ]
+  },
+  {
+    "claim": "إسرائيل أعلنت استخدام أسلحة نووية في غزة عام 2024",
+    "verdict": "false",
+    "explanation": "لم تصدر أي تصريحات رسمية من إسرائيل تؤكد استخدام أسلحة نووية في غزة. وكالات الأخبار الدولية الموثوقة كرويترز وأسوشيتد برس لم تُرد هذا الخبر. هذه المعلومة مصدرها منشورات مزيفة على وسائل التواصل الاجتماعي.",
+    "sources": [
+      "https://www.reuters.com/world/middle-east/",
+      "https://fatabyyano.net/فئة/فلسطين/"
+    ]
+  },
+  {
+    "claim": "تناول الثوم يقضي تماماً على فيروس الإنفلونزا",
+    "verdict": "misleading",
+    "explanation": "يحتوي الثوم على مركب الأليسين الذي له خصائص مضادة للميكروبات في الاختبارات المعملية، لكن لا يوجد دليل سريري كافٍ يثبت أن تناول الثوم يعالج أو يقضي على فيروس الإنفلونزا لدى البشر بشكل كامل.",
+    "sources": [
+      "https://www.nhs.uk/live-well/eat-well/eight-tips-for-healthy-eating/",
+      "https://www.who.int/ar/emergencies/diseases/novel-coronavirus-2019/advice-for-public/myth-busters"
+    ]
+  },
+  {
+    "claim": "Water fluoridation is a government mind-control plot.",
+    "verdict": "false",
+    "explanation": "Community water fluoridation at recommended levels (0.7 mg/L in the US) has been extensively studied for over 75 years. It is a public health measure to reduce tooth decay, endorsed by the WHO, CDC, and ADA. No credible evidence supports mind-control claims.",
+    "sources": [
+      "https://www.cdc.gov/fluoridation/index.html",
+      "https://www.who.int/health-topics/fluoride"
+    ]
+  },
+  {
+    "claim": "NASA confirmed a 15-day total darkness period will occur on Earth.",
+    "verdict": "false",
+    "explanation": "NASA has never made such a claim. This story has circulated periodically since at least 2015 and has been repeatedly debunked by NASA scientists and multiple fact-checking organizations.",
+    "sources": [
+      "https://www.snopes.com/fact-check/nasa-6-days-darkness/",
+      "https://www.reuters.com/article/factcheck-nasa-darkness-idUSL1N2T80HT"
+    ]
+  },
+  {
+    "claim": "George Soros controls global elections through secret funding.",
+    "verdict": "false",
+    "explanation": "While George Soros does fund various political and civil society organizations through the Open Society Foundations, there is no credible evidence that he 'controls' elections. This claim is a widely circulated antisemitic conspiracy theory with no factual basis.",
+    "sources": [
+      "https://www.snopes.com/fact-check/george-soros-funded-antifa/",
+      "https://www.reuters.com/article/us-factcheck-soros-elections-idUSKBN27M2Q0"
+    ]
+  },
+  {
+    "claim": "Chemtrails from aircraft are used to spray harmful chemicals on the population.",
+    "verdict": "false",
+    "explanation": "The white trails left by aircraft are water vapor condensation trails (contrails), not chemical sprays. A 2016 survey of 77 atmospheric scientists found 77 of 77 agreed there is no evidence of a secret large-scale atmospheric spraying program.",
+    "sources": [
+      "https://science.sciencemag.org/content/352/6285/529",
+      "https://www.snopes.com/fact-check/chemtrails/"
+    ]
+  },
+  {
+    "claim": "Elon Musk announced free electricity for all Tesla owners starting 2025.",
+    "verdict": "false",
+    "explanation": "No such announcement has been made by Elon Musk or Tesla. This claim circulates as a social media hoax. Tesla's Supercharger network charges for electricity except in specific promotional plans for some older vehicle purchases.",
+    "sources": [
+      "https://www.reuters.com/fact-check/no-evidence-musk-announced-free-electricity-tesla-owners-2024-04-25/",
+      "https://www.snopes.com/fact-check/musk-free-electricity/"
+    ]
+  },
+  {
+    "claim": "The human body replaces all its cells every seven years.",
+    "verdict": "misleading",
+    "explanation": "Different cell types have vastly different lifespans. While some cells (like gut lining) replace within days, others (like neurons in the cerebral cortex) last a lifetime. The idea that the entire body replaces itself in exactly seven years is an oversimplification without scientific accuracy.",
+    "sources": [
+      "https://www.scientificamerican.com/article/our-bodies-replace-billions-of-cells-every-day/",
+      "https://www.bbc.com/future/article/20190402-why-your-body-is-not-the-same-you-were-born-with"
+    ]
+  },
+  {
+    "claim": "Russia invaded Ukraine in February 2022.",
+    "verdict": "true",
+    "explanation": "On February 24, 2022, Russian armed forces launched a full-scale military invasion of Ukraine, confirmed by multiple governments, international organizations including the UN, and major news agencies worldwide.",
+    "sources": [
+      "https://www.reuters.com/world/europe/russia-launches-massive-military-operation-against-ukraine-2022-02-24/",
+      "https://www.bbc.com/news/world-europe-60504334",
+      "https://www.un.org/en/about-us/main-bodies/general-assembly"
+    ]
+  },
+  {
+    "claim": "The Pfizer COVID-19 vaccine has been FDA approved (not just emergency authorized).",
+    "verdict": "true",
+    "explanation": "The FDA granted full approval to the Pfizer-BioNTech COVID-19 vaccine (marketed as Comirnaty) on August 23, 2021, for individuals 16 years and older, following a thorough review of safety and effectiveness data.",
+    "sources": [
+      "https://www.fda.gov/news-events/press-announcements/fda-approves-first-covid-19-vaccine",
+      "https://www.reuters.com/business/healthcare-pharmaceuticals/fda-grants-full-approval-pfizer-biontech-covid-19-vaccine-2021-08-23/"
+    ]
+  },
+  {
+    "claim": "مايكروسوفت ستوقف دعم ويندوز 10 في أكتوبر 2025",
+    "verdict": "true",
+    "explanation": "أعلنت مايكروسوفت رسمياً أن دعم نظام التشغيل ويندوز 10 سينتهي في 14 أكتوبر 2025، وبعد هذا التاريخ لن تتلقى التحديثات الأمنية المجانية. يمكن للمستخدمين الترقية إلى ويندوز 11 أو الاشتراك في برنامج التحديثات الموسعة مقابل رسوم.",
+    "sources": [
+      "https://support.microsoft.com/en-us/windows/windows-10-end-of-support-faq",
+      "https://www.reuters.com/technology/microsoft-windows-10-support-end-2025/"
+    ]
+  },
+  {
+    "claim": "وجدت دراسة جديدة أن شرب القهوة يومياً يقلل خطر الإصابة بمرض ألزهايمر بنسبة 65%",
+    "verdict": "misleading",
+    "explanation": "بعض الدراسات رصدت ارتباطاً بين استهلاك القهوة وانخفاض خطر الإصابة بألزهايمر، إلا أن هذه الدراسات ارتباطية وليست سببية، ونسبة 65% مبالغ فيها وغير مدعومة بأدلة قاطعة. لا يُنصح بالاعتماد على القهوة وحدها للوقاية من المرض.",
+    "sources": [
+      "https://www.alzheimers.org.uk/about-dementia/risk-factors-and-prevention/coffee-and-dementia",
+      "https://misbar.com/factcheck/2022/04/10/هل-تقلل-القهوة-من-خطر-الاصابة-بمرض-الزهايمر"
+    ]
+  },
+  {
+    "claim": "تم اكتشاف حياة ذكية خارج كوكب الأرض رسمياً من قبل ناسا",
+    "verdict": "false",
+    "explanation": "لم تُعلن وكالة ناسا أو أي وكالة فضاء معتمدة عن اكتشاف حياة ذكية خارج الأرض. وعلى الرغم من استمرار البحث العلمي في هذا المجال، لا يوجد أي دليل موثق ومعترف به دولياً حتى الآن.",
+    "sources": [
+      "https://www.nasa.gov/press-release/nasa-confirms-evidence-that-liquid-water-flows-on-todays-mars",
+      "https://fatabyyano.net/ناسا-لم-تكتشف-حياة-خارج-الأرض/"
+    ]
+  },
+  {
+    "claim": "Eating turkey makes you sleepy due to its high tryptophan content.",
+    "verdict": "misleading",
+    "explanation": "Turkey does contain tryptophan, a precursor to serotonin and melatonin, but not in significantly higher amounts than chicken or beef. The post-Thanksgiving drowsiness is more likely caused by overall calorie overconsumption and alcohol than tryptophan specifically.",
+    "sources": [
+      "https://www.scientificamerican.com/article/fact-or-fiction-does-turkey-make-you-sleepy/",
+      "https://www.bbc.com/future/article/20131128-does-turkey-really-make-you-sleepy"
+    ]
+  }
+]

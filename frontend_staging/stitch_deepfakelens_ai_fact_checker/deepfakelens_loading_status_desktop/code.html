@@ -1,0 +1,237 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>DeepFakeLens - Analyzing Claim</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Newsreader:wght@500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#213145",
+                        "surface-bright": "#f8f9ff",
+                        "primary-fixed": "#dae2ff",
+                        "error-container": "#ffdad6",
+                        "outline": "#75777f",
+                        "on-primary-container": "#8392bc",
+                        "on-secondary-fixed-variant": "#004f4f",
+                        "surface-container": "#e5eeff",
+                        "secondary": "#006a6a",
+                        "surface-container-high": "#dce9ff",
+                        "on-surface": "#0b1c30",
+                        "background": "#f8f9ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-error-container": "#93000a",
+                        "primary": "#041539",
+                        "tertiary-container": "#402600",
+                        "on-tertiary-container": "#b48c5b",
+                        "inverse-on-surface": "#eaf1ff",
+                        "tertiary-fixed-dim": "#ebbf89",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f8f9ff",
+                        "primary-fixed-dim": "#b7c6f2",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-secondary-container": "#006e6e",
+                        "on-surface-variant": "#45464e",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#c5c6cf",
+                        "surface-tint": "#4f5d85",
+                        "tertiary-fixed": "#ffddb7",
+                        "on-primary-fixed": "#091a3d",
+                        "tertiary": "#241400",
+                        "surface-dim": "#cbdbf5",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "inverse-primary": "#b7c6f2",
+                        "secondary-fixed-dim": "#76d6d5",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#93f2f2",
+                        "surface-variant": "#d3e4fe",
+                        "on-secondary-fixed": "#002020",
+                        "on-background": "#0b1c30",
+                        "secondary-container": "#90efef",
+                        "primary-container": "#1b2a4e",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#5f4117",
+                        "on-primary-fixed-variant": "#37466b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-max": "1200px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Newsreader", "serif"],
+                        "headline-md": ["Newsreader", "serif"],
+                        "label-md": ["Inter", "sans-serif"],
+                        "label-sm": ["Inter", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "headline-lg": ["Newsreader", "serif"],
+                        "headline-lg-mobile": ["Newsreader", "serif"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }]
+                    },
+                    "boxShadow": {
+                        'ambient': '0 4px 20px rgba(4, 21, 57, 0.04)',
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .pulse-ring {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: .5; transform: scale(1.1); }
+        }
+        .progress-bar-fill {
+            animation: progress 8s ease-in-out forwards;
+        }
+        @keyframes progress {
+            0% { width: 20%; }
+            100% { width: 40%; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface text-primary dark:text-primary-fixed flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto docked full-width top-0 z-50">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-2xl font-variation-settings: 'FILL' 1;" data-icon="lens" data-weight="fill">lens</span>
+<div class="flex flex-col">
+<span class="text-headline-md font-headline-md font-extrabold text-primary dark:text-primary-fixed">DeepFakeLens</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Check any claim or image in seconds.</span>
+</div>
+</div>
+<nav class="hidden md:flex gap-6">
+<a class="text-label-md font-label-md text-primary dark:text-primary-fixed hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200" href="#"><span class="flex items-center gap-1"><span class="material-symbols-outlined text-[20px]">search</span>Analyze</span></a>
+<a class="text-label-md font-label-md text-on-surface-variant dark:text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200" href="#"><span class="flex items-center gap-1"><span class="material-symbols-outlined text-[20px]">history</span>History</span></a>
+
+</nav>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col items-center justify-center p-margin-mobile md:p-margin-desktop w-full">
+<div class="max-w-[800px] w-full bg-surface-container-lowest rounded-xl shadow-ambient p-8 md:p-12 my-12 border border-outline-variant/30">
+<!-- Claim Quote Block -->
+<div class="mb-10 text-center">
+<span class="material-symbols-outlined text-outline-variant text-4xl mb-2 opacity-50" data-icon="format_quote">format_quote</span>
+<blockquote class="text-headline-md font-headline-md text-primary px-4 md:px-12 border-l-4 border-secondary/20 italic">
+                    "The moon is made of green cheese."
+                </blockquote>
+</div>
+<hr class="border-outline-variant/20 mb-10 w-3/4 mx-auto">
+<!-- Stepper -->
+<div class="relative px-4 md:px-16 w-full max-w-md mx-auto">
+<div class="absolute left-6 md:left-[72px] top-4 bottom-8 w-[2px] bg-outline-variant/20"></div>
+<!-- Step 1: Completed -->
+<div class="flex items-start mb-6 relative">
+<div class="w-6 h-6 rounded-full bg-secondary text-on-secondary flex items-center justify-center mr-4 mt-0.5 z-10 shrink-0">
+<span class="material-symbols-outlined text-[16px]" data-icon="check">check</span>
+</div>
+<div>
+<h4 class="text-label-md font-label-md text-primary">Reading your claim...</h4>
+<p class="text-label-sm font-label-sm text-outline mt-1">Claim parsed and keywords extracted.</p>
+</div>
+</div>
+<!-- Step 2: Active -->
+<div class="flex items-start mb-6 relative">
+<div class="w-6 h-6 rounded-full bg-surface-container border-2 border-secondary flex items-center justify-center mr-4 mt-0.5 z-10 shrink-0 relative">
+<div class="w-2 h-2 rounded-full bg-secondary pulse-ring"></div>
+</div>
+<div>
+<h4 class="text-label-md font-label-md text-primary">Checking our knowledge base...</h4>
+<p class="text-label-sm font-label-sm text-outline mt-1">Querying forensic database for known matches.</p>
+</div>
+</div>
+<!-- Step 3: Pending -->
+<div class="flex items-start mb-6 relative">
+<div class="w-6 h-6 rounded-full bg-surface-container border border-outline-variant/50 flex items-center justify-center mr-4 mt-0.5 z-10 shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant/50"></span>
+</div>
+<div>
+<h4 class="text-label-md font-label-md text-on-surface-variant/50">Searching trusted sources...</h4>
+</div>
+</div>
+<!-- Step 4: Pending -->
+<div class="flex items-start mb-6 relative">
+<div class="w-6 h-6 rounded-full bg-surface-container border border-outline-variant/50 flex items-center justify-center mr-4 mt-0.5 z-10 shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant/50"></span>
+</div>
+<div>
+<h4 class="text-label-md font-label-md text-on-surface-variant/50">Reading articles...</h4>
+</div>
+</div>
+<!-- Step 5: Pending -->
+<div class="flex items-start relative">
+<div class="w-6 h-6 rounded-full bg-surface-container border border-outline-variant/50 flex items-center justify-center mr-4 mt-0.5 z-10 shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant/50"></span>
+</div>
+<div>
+<h4 class="text-label-md font-label-md text-on-surface-variant/50">Cross-referencing &amp; writing verdict...</h4>
+</div>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="mt-12 w-full max-w-md mx-auto">
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full progress-bar-fill"></div>
+</div>
+<p class="text-center text-label-sm font-label-sm text-outline mt-3 flex justify-center items-center gap-1">
+<span class="material-symbols-outlined text-[16px] animate-spin" data-icon="sync">sync</span>
+                    Analyzing forensic data. This usually takes a few seconds.
+                </p>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface dark:bg-surface border-t border-outline-variant dark:border-outline docked full-width bottom-0 w-full px-margin-mobile md:px-margin-desktop py-gutter flex flex-col md:flex-row justify-between items-center gap-4 max-w-container-max mx-auto text-on-surface-variant dark:text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="text-label-md font-label-md text-primary dark:text-primary-fixed">DeepFakeLens</span>
+<span class="text-label-sm font-label-sm">© 2024 DeepFakeLens. Forensic precision for digital truth.</span>
+</div>
+<div class="flex gap-6 flex-wrap justify-center">
+<span class="text-label-sm font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="verified_user">verified_user</span>
+                Powered by trusted sources
+            </span>
+<span class="text-label-sm font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="lock_open">lock_open</span>
+                No login required
+            </span>
+<span class="text-label-sm font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="money_off">money_off</span>
+                Free to use
+            </span>
+<a class="text-label-sm font-label-sm hover:text-primary dark:hover:text-primary-fixed transition-opacity duration-200 flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]" data-icon="language">language</span>
+                Auto-detect / English / العربية
+            </a>
+</div>
+</footer>
+
+
+</body></html>

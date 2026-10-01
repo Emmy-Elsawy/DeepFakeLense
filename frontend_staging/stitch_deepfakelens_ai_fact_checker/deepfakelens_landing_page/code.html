@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DeepFakeLens - Check any claim or image in seconds</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Newsreader:opsz,wght@6..72,500;6..72,600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "primary-fixed": "#dae2ff",
+                            "on-error": "#ffffff",
+                            "on-primary-container": "#8392bc",
+                            "on-surface": "#0b1c30",
+                            "on-error-container": "#93000a",
+                            "on-tertiary-fixed": "#2a1700",
+                            "inverse-on-surface": "#eaf1ff",
+                            "surface-container": "#e5eeff",
+                            "surface": "#f8f9ff",
+                            "surface-bright": "#f8f9ff",
+                            "on-primary": "#ffffff",
+                            "surface-container-high": "#dce9ff",
+                            "surface-container-highest": "#d3e4fe",
+                            "on-secondary": "#ffffff",
+                            "secondary-fixed-dim": "#76d6d5",
+                            "tertiary-container": "#402600",
+                            "on-background": "#0b1c30",
+                            "primary": "#041539",
+                            "background": "#f8f9ff",
+                            "error-container": "#ffdad6",
+                            "secondary-container": "#90efef",
+                            "on-secondary-container": "#006e6e",
+                            "primary-fixed-dim": "#b7c6f2",
+                            "tertiary-fixed": "#ffddb7",
+                            "surface-variant": "#d3e4fe",
+                            "on-tertiary-fixed-variant": "#5f4117",
+                            "secondary": "#006a6a",
+                            "surface-container-low": "#eff4ff",
+                            "on-primary-fixed": "#091a3d",
+                            "tertiary-fixed-dim": "#ebbf89",
+                            "error": "#ba1a1a",
+                            "on-surface-variant": "#45464e",
+                            "outline": "#75777f",
+                            "on-secondary-fixed-variant": "#004f4f",
+                            "inverse-surface": "#213145",
+                            "inverse-primary": "#b7c6f2",
+                            "secondary-fixed": "#93f2f2",
+                            "surface-tint": "#4f5d85",
+                            "on-secondary-fixed": "#002020",
+                            "on-primary-fixed-variant": "#37466b",
+                            "tertiary": "#241400",
+                            "surface-container-lowest": "#ffffff",
+                            "outline-variant": "#c5c6cf",
+                            "primary-container": "#1b2a4e",
+                            "on-tertiary-container": "#b48c5b",
+                            "on-tertiary": "#ffffff",
+                            "surface-dim": "#cbdbf5"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                    },
+                    "spacing": {
+                            "unit": "8px",
+                            "container-max": "1200px",
+                            "gutter": "24px",
+                            "margin-desktop": "40px",
+                            "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                            "headline-lg-mobile": ["Newsreader"],
+                            "body-md": ["Inter"],
+                            "label-sm": ["Inter"],
+                            "label-md": ["Inter"],
+                            "display-lg": ["Newsreader"],
+                            "headline-lg": ["Newsreader"],
+                            "body-lg": ["Inter"],
+                            "headline-md": ["Newsreader"]
+                    },
+                    "fontSize": {
+                            "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                            "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                            "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                            "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                            "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                            "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .tab-active {
+            border-bottom: 2px solid theme('colors.primary');
+            color: theme('colors.primary');
+        }
+        
+        .tab-inactive {
+            color: theme('colors.on-surface-variant');
+            border-bottom: 2px solid transparent;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col antialiased">
+<!-- Top AppBar (Brand Header) -->
+<header class="bg-surface dark:bg-surface flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto docked full-width top-0">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed" data-icon="lens" data-weight="fill" style="font-variation-settings: 'FILL' 1;">lens</span>
+<h1 class="text-headline-md font-headline-md font-extrabold text-primary dark:text-primary-fixed">DeepFakeLens</h1>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Check any claim or image in seconds.</p>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col px-margin-mobile md:px-margin-desktop py-8 max-w-container-max mx-auto w-full gap-8">
+<!-- Analysis Input Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(4,21,57,0.04)] border border-outline-variant p-6 flex flex-col gap-6">
+<!-- Tabs -->
+<div class="flex w-full border-b border-surface-variant mb-2">
+<button class="flex-1 pb-3 tab-active text-label-md font-label-md text-center transition-colors duration-200" id="tab-text" onclick="switchTab('text')">Text claim</button>
+<button class="flex-1 pb-3 tab-inactive text-label-md font-label-md text-center transition-colors duration-200" id="tab-image" onclick="switchTab('image')">Upload image</button>
+</div>
+<!-- Tab Content: Text -->
+<div class="flex flex-col gap-4" id="content-text">
+<textarea class="w-full h-32 p-4 border-2 border-outline-variant rounded-lg bg-surface text-body-md font-body-md text-on-surface placeholder-on-surface-variant focus:outline-none focus:border-secondary focus:ring-0 resize-none" oninput="checkInputState(this, 'check-btn-text')" placeholder="Paste a claim, headline, or statement to check…"></textarea>
+<button class="w-full bg-primary text-on-primary py-3 rounded-lg text-label-md font-label-md transition-colors duration-200 disabled:bg-surface-variant disabled:text-on-surface-variant hover:bg-primary-container" disabled="" id="check-btn-text">
+                    Check
+                </button>
+</div>
+<!-- Tab Content: Image (Hidden by default) -->
+<div class="hidden flex-col gap-4" id="content-image">
+<div class="w-full h-40 border-2 border-dashed border-outline-variant rounded-lg bg-surface flex flex-col items-center justify-center p-6 gap-2 text-center cursor-pointer hover:bg-surface-container-low transition-colors duration-200">
+<span class="material-symbols-outlined text-outline text-3xl" data-icon="upload_file">upload_file</span>
+<p class="text-body-md font-body-md text-on-surface-variant">Drag an image here or click to upload</p>
+<input accept="image/*" class="hidden" onchange="simulateImageUpload(this)" type="file"/>
+</div>
+<button class="w-full bg-primary text-on-primary py-3 rounded-lg text-label-md font-label-md transition-colors duration-200 disabled:bg-surface-variant disabled:text-on-surface-variant hover:bg-primary-container" disabled="" id="check-btn-image">
+                    Check Image
+                </button>
+</div>
+</div>
+<!-- Trust Signals Row -->
+<div class="flex flex-col gap-4 py-4 px-2">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-xl" data-icon="verified_user">verified_user</span>
+<span class="text-label-md font-label-md text-on-surface">Powered by trusted sources</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-xl" data-icon="no_accounts">no_accounts</span>
+<span class="text-label-md font-label-md text-on-surface">No login required</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-xl" data-icon="money_off">money_off</span>
+<span class="text-label-md font-label-md text-on-surface">Free to use</span>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface dark:bg-surface border-t border-outline-variant dark:border-outline w-full px-margin-mobile md:px-margin-desktop py-gutter flex flex-col md:flex-row justify-between items-center gap-4 max-w-container-max mx-auto docked full-width bottom-0 mt-auto">
+<p class="text-body-md font-body-md text-on-surface-variant dark:text-on-surface-variant text-center md:text-left">
+            © 2024 DeepFakeLens. Forensic precision for digital truth.
+        </p>
+<div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2">
+<span class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed cursor-pointer transition-opacity duration-200">Powered by trusted sources</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed cursor-pointer transition-opacity duration-200">No login required</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed cursor-pointer transition-opacity duration-200">Free to use</span>
+<select class="bg-transparent border-none text-label-sm font-label-sm text-on-surface-variant hover:text-primary cursor-pointer focus:ring-0 p-0 text-right">
+<option>Auto-detect / English / العربية</option>
+<option>English</option>
+<option>العربية</option>
+</select>
+</div>
+</footer>
+<!-- Interactive Script -->
+<script>
+        function switchTab(tab) {
+            const tabText = document.getElementById('tab-text');
+            const tabImage = document.getElementById('tab-image');
+            const contentText = document.getElementById('content-text');
+            const contentImage = document.getElementById('content-image');
+            
+            if (tab === 'text') {
+                tabText.classList.add('tab-active');
+                tabText.classList.remove('tab-inactive');
+                tabImage.classList.add('tab-inactive');
+                tabImage.classList.remove('tab-active');
+                
+                contentText.classList.remove('hidden');
+                contentText.classList.add('flex');
+                contentImage.classList.add('hidden');
+                contentImage.classList.remove('flex');
+            } else {
+                tabImage.classList.add('tab-active');
+                tabImage.classList.remove('tab-inactive');
+                tabText.classList.add('tab-inactive');
+                tabText.classList.remove('tab-active');
+                
+                contentImage.classList.remove('hidden');
+                contentImage.classList.add('flex');
+                contentText.classList.add('hidden');
+                contentText.classList.remove('flex');
+            }
+        }
+
+        function checkInputState(textarea, buttonId) {
+            const btn = document.getElementById(buttonId);
+            if (textarea.value.trim().length > 0) {
+                btn.removeAttribute('disabled');
+            } else {
+                btn.setAttribute('disabled', 'true');
+            }
+        }
+        
+        function simulateImageUpload(input) {
+            // In a real app, handle file. Here just enable the button to simulate readiness.
+            const btn = document.getElementById('check-btn-image');
+            btn.removeAttribute('disabled');
+            
+            // visually indicate upload
+            const dropzone = input.parentElement;
+            dropzone.classList.add('bg-surface-container-low', 'border-secondary');
+            dropzone.querySelector('p').innerText = "Image selected. Ready to check.";
+        }
+        
+        // Make the drag and drop zone clickable to open file dialog
+        document.querySelector('.border-dashed').addEventListener('click', function() {
+            this.querySelector('input[type="file"]').click();
+        });
+    </script>
+</body></html>
