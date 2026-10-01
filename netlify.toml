@@ -1,5 +1,5 @@
 [build]
-  command = "npm install --no-bin-links && npm run build"
+  command = "rm -rf node_modules/.bin/vite && npm install && npx vite build"
   publish = "dist"
   functions = "../netlify/functions"
 
